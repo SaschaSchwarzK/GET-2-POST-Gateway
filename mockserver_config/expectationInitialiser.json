@@ -1,0 +1,12 @@
+[
+    {
+      "httpRequest": {
+        "path": "/example-post",
+        "method": "POST"
+      },
+      "httpResponseTemplate": {
+        "templateType": "MUSTACHE",
+        "template": "{{{request.body}}}"
+      } 
+    }
+]

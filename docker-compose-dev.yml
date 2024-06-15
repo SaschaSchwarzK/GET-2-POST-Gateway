@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  get2post-gateway:
+    build: .
+    image: sschwarz/get2post-gateway:0.1
+    container_name: get2post_gateway
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config:/app/config
+    environment:
+      - API_KEY_ENV_VAR=your_actual_api_key
+      - BASIC_AUTH_USERNAME=username
+      - BASIC_AUTH_PASSWORD=password
+      - ALLOWED_IPS=127.0.0.1,172.22.0.1
+      - RATE_LIMIT=1
+    env_file:
+      - .env
+    depends_on:
+      - mockserver
+
+  mockserver:
+    image: mockserver/mockserver  #Javascript Expectation Templates won`t work because of unfixed bugs in mockserver
+    ports:
+      - "8000:1080"
+    environment:
+      MOCKSERVER_LOG_LEVEL: DEBUG
+      MOCKSERVER_INITIALIZATION_JSON_PATH: /config/expectationInitialiser.json
+    volumes:
+      - ./mockserver_config:/config

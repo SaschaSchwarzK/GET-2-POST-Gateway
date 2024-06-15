@@ -1,0 +1,12 @@
+endpoints:
+  "/example-get":
+    post_url: "/example-post"
+    target_host: "http://127.0.0.1:8888"
+    auth_method: "bearer"
+    api_key_env: "API_KEY_ENV_VAR"
+  "/another-get":
+    post_url: "/another-post"
+    target_host: "http://127.0.0.1:8888"
+    auth_method: "basic"
+    username_env: "BASIC_AUTH_USERNAME"
+    password_env: "BASIC_AUTH_PASSWORD"

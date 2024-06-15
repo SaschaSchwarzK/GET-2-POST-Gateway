@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  get2post-gateway:
+    build: .
+    image: sschwarz/get2post-gateway:0.2
+    container_name: get2post_gateway
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config:/app/config
+    environment:
+      - API_KEY_ENV_VAR=your_actual_api_key
+      - BASIC_AUTH_USERNAME=username
+      - BASIC_AUTH_PASSWORD=password
+      - ALLOWED_IPS=127.0.0.1,172.22.0.1
+      - RATE_LIMIT=1
+    env_file:
+      - .env
+
